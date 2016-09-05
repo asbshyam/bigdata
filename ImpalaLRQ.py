@@ -11,6 +11,10 @@ import datetime
 import time
 import sys
 
+# Set Minutes after Queries are to be listed
+
+minutes = 5
+
 # Connect via CM API
 
 try:
@@ -37,7 +41,7 @@ try:
 
     for item in ejson["queries"]:
         # print item
-        if item["queryState"] == "FINISHED":
+        if item["queryState"] != "FINISHED":
 
             sft = ""
             sql_t = ""
@@ -53,14 +57,13 @@ try:
 
             tdiff = (tnow-tsql)/60
 
-            if tdiff > 0:
+            if tdiff > minutes:
                 print item["statement"], ", ", \
                     item["user"], ", ",\
                     item["queryId"], ", ",\
                     item["queryState"], ", ",\
                     item["startTime"], ", ", \
                     str(tdiff) + " Minutes"
-                exit(0)
 
 except:
     print "Caught Exception", sys.exc_info()[0]
