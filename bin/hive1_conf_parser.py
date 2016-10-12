@@ -1,8 +1,8 @@
 import os
 from xml.etree import ElementTree
 
-for filename in os.listdir('/data/2/gpabdadmin/tmp/mr_config/dev'):
-	with open('/data/2/gpabdadmin/tmp/mr_config/dev/' + filename, 'rt') as f:
+for filename in os.listdir('/dev/conf'):
+	with open('/dev/conf/' + filename, 'rt') as f:
 		tree = ElementTree.parse(f)
 
 	nameline = line = ""
